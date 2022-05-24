@@ -1,23 +1,14 @@
-import { useEffect } from 'react';
 import './App.css';
-import axios from 'axios'
+import { Categories } from './Components/Categories'
+
 
 function App() {
   return (
-    <div className="categories">
-      <header className="trivia">Let's Play Trivia!</header>
+    <div>
+      <header>Let's Play Trivia!</header>
+      <Categories />
     </div>
   );
 }
-
-
-
-useEffect(() => {
-  console.log('useEffect runs')
-  axios.get('https://opentdb.com/api.php?amount=10&category=10&difficulty=easy&type=boolean').then((res) => {
-    const results = res.data.map((repo) => repo.name)
-    console.log(results)
-  })
-})
 
 export default App;
