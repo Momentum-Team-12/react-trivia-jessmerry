@@ -1,46 +1,51 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Categories() {
-    const [catObjects, displayApiResults] = useState ([null])
-    const [selectedCat, setSelectedCat] = useState([])
+    const [catObjects, setCatObjects] = useState([]);
+    const [questions, setQuestions] = useState([]);
+    const [categorySelected, setCategorySelected] = useState(false);
 
-    useEffect(() => {
-        axios
-        .get(`https://opentdb.com/api_category.php`)
-        .then((res) => {
-            console.log(res.data.trivia_categories)
-            displayApiResults(res.data.trivia_categories)
-        })
-    }, [])
-    console.log(selectedCat)
+  useEffect(() => {
+    axios.get(`https://opentdb.com/api_category.php`).then((res) => {
+      console.log(res.data);
+      setCatObjects(res.data.trivia_categories);
+    });
+  }, []);
 
-    // const handleSetSelectedCat = (catId) => {
-    //     const catObject = catObjects.find((catObject) => catObject.id === catId)
-    //     setSelectedCat(catObject)
-    // }
+  const handleSetSelectedCat = (catObject) => {
+    axios
+      .get(`https://opentdb.com/api.php?amount=10&category=${catObject.id}`)
+      .then((res) => {
+        console.log(catObject.id);
+        console.log(res.data);
+        setQuestions(res.results);
+        setCategorySelected(true);
+      });
+  };
 
-    // if (selectedCat) {
-    //     const catObject = selectedCat
-    //     return (
-    //         <>
-    //             <CategoryOptions />
-    //         </>
-    //     )
-    //     }
-
-    return (
-        <div>
+  return (
+    <>
+      {!categorySelected ? (
+        <>
+          <div>
             <p>Pick a Category!</p>
             {catObjects.map((catObject, index) => {
-                return (
-                    <div className="category-button" key={index}>
-                        <button onClick={() => setSelectedCat(catObject.id)}>{catObject.name}</button>
-                    </div>
-                )
+              return (
+                <div className="category-button" key={index}>
+                  <button onClick={() => handleSetSelectedCat(catObject)}>
+                    {catObject.name}
+                  </button>
+                </div>
+              );
             })}
-        </div>
-    )
-    }
+          </div>
+        </>
+      ) : (
+        <>category selected</>
+      )}
+    </>
+  );
+}
 
 export default Categories;
