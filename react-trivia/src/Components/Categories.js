@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export function Categories() {
-    const [catObjects, displayApiResults] = useState ([])
-    const [selectedCat, setSelectedCat] = useState(null)
+function Categories() {
+    const [catObjects, displayApiResults] = useState ([null])
+    const [selectedCat, setSelectedCat] = useState([])
 
     useEffect(() => {
         axios
@@ -13,10 +13,25 @@ export function Categories() {
             displayApiResults(res.data.trivia_categories)
         })
     }, [])
+    console.log(selectedCat)
+
+    // const handleSetSelectedCat = (catId) => {
+    //     const catObject = catObjects.find((catObject) => catObject.id === catId)
+    //     setSelectedCat(catObject)
+    // }
+
+    // if (selectedCat) {
+    //     const catObject = selectedCat
+    //     return (
+    //         <>
+    //             <CategoryOptions />
+    //         </>
+    //     )
+    //     }
 
     return (
         <div>
-            <p>The results are:</p>
+            <p>Pick a Category!</p>
             {catObjects.map((catObject, index) => {
                 return (
                     <div className="category-button" key={index}>
@@ -26,4 +41,6 @@ export function Categories() {
             })}
         </div>
     )
-}
+    }
+
+export default Categories;
