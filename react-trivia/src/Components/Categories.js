@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Categories() {
-    const [catObjects, setCatObjects] = useState([]);
-    const [questions, setQuestions] = useState([]);
-    const [categorySelected, setCategorySelected] = useState(false);
+  const [catObjects, setCatObjects] = useState([]);
+  // const [questions, setQuestions] = useState([]);
+  const [categorySelected, setCategorySelected] = useState(false);
 
   useEffect(() => {
     axios.get(`https://opentdb.com/api_category.php`).then((res) => {
@@ -13,15 +13,19 @@ function Categories() {
     });
   }, []);
 
+  var questions = []
   const handleSetSelectedCat = (catObject) => {
     axios
       .get(`https://opentdb.com/api.php?amount=10&category=${catObject.id}`)
       .then((res) => {
         console.log(catObject.id);
-        console.log(res.data);
-        setQuestions(res.results);
+        console.log(res.data.results);
+        var questions = res.data.results
+        // setQuestions(res.results);
+        console.log(questions);
+        console.log(Array.isArray(questions));
         setCategorySelected(true);
-      });
+      }, []);
   };
 
   return (
@@ -42,7 +46,15 @@ function Categories() {
           </div>
         </>
       ) : (
-        <>category selected</>
+        <>
+          <div>
+            <p>Here are your questions!</p>
+            <div>
+              
+            </div>
+          </div>
+          category selected
+        </>
       )}
     </>
   );
