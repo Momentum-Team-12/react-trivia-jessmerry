@@ -37,7 +37,7 @@ function Categories() {
             {catObjects.map((catObject, index) => {
               return (
                 <div className="category-button" key={index}>
-                  <button onClick={() => handleSetSelectedCat(catObject)}>
+                  <button className="cat-button" onClick={() => handleSetSelectedCat(catObject)}>
                     {catObject.name}
                   </button>
                 </div>
@@ -48,12 +48,12 @@ function Categories() {
       ) : (
         <>
           <div>
-            <p>Here are your questions!</p>
-            <div>
-              
-            </div>
+            <p className="questions-list">
+              <i class="fa-regular fa-thumbs-up"></i>
+              Here are your questions!
+              <i class="fa-regular fa-thumbs-up"></i>
+            </p>
           </div>
-          category selected
         </>
       )}
     </>

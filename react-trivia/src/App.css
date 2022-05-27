@@ -1,16 +1,32 @@
+body {
+  background-color: rgb(156, 192, 190);
+}
+
+.cat-button {
+  color: rgb(32, 58, 74);
+  border-radius: 50px;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-size: large;
+}
+
 header {
-  font-family:'Courier New', Courier, monospace;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-weight: bold;
+  color: aliceblue;
+  font-size: xx-large;
 }
 
 p {
   font-family:'Courier New', Courier, monospace;
 }
 
+.questions-list {
+  font-weight: bold;
+  font-size:xx-large;
+}
+
 .category-button {
-  border: 3px black solid;
-  border-radius: 10px;
-  width: 250px;
-  background-color: lightblue;
-  font-family:'Courier New', Courier, monospace;
-  text-align: center;
+  width: auto;
+  height: auto;
+  margin: 10px;
 }
