@@ -49,9 +49,9 @@ function Categories() {
         <>
           <div>
             <p className="questions-list">
-              <i class="fa-regular fa-thumbs-up"></i>
+              <i className="fa-regular fa-thumbs-up"></i>
               Here are your questions!
-              <i class="fa-regular fa-thumbs-up"></i>
+              <i className="fa-regular fa-thumbs-up"></i>
             </p>
           </div>
         </>
