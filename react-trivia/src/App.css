@@ -22,11 +22,22 @@ p {
 
 .questions-list {
   font-weight: bold;
-  font-size:xx-large;
 }
 
 .category-button {
   width: auto;
   height: auto;
   margin: 10px;
+}
+
+.answer-button {
+  color: rgb(32, 58, 74);
+  border-radius: 50px;
+  font-size: large;
+}
+
+.question-text {
+  color: rgb(32, 58, 74);
+  border-radius: 50px;
+  font-size: x-large;
 }

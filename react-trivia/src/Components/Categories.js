@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Questions from "./Questions"
 
 function Categories() {
   const [catObjects, setCatObjects] = useState([]);
-  // const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [categorySelected, setCategorySelected] = useState(false);
 
   useEffect(() => {
@@ -13,17 +14,14 @@ function Categories() {
     });
   }, []);
 
-  var questions = []
   const handleSetSelectedCat = (catObject) => {
     axios
       .get(`https://opentdb.com/api.php?amount=10&category=${catObject.id}`)
       .then((res) => {
         console.log(catObject.id);
-        console.log(res.data.results);
-        var questions = res.data.results
-        // setQuestions(res.results);
+        console.log(res.data);
+        setQuestions(res.data.results);
         console.log(questions);
-        console.log(Array.isArray(questions));
         setCategorySelected(true);
       }, []);
   };
@@ -52,6 +50,19 @@ function Categories() {
               <i className="fa-regular fa-thumbs-up"></i>
               Here are your questions!
               <i className="fa-regular fa-thumbs-up"></i>
+              {questions &&
+              questions.map((question, index) => {
+                return (
+                  <Questions 
+                    questionText={question.question}
+                    correctAnswer={question.correct_answer}
+                    key={index}
+                    incorrectAnswers={
+                      question.incorrect_answers
+                    }
+                  />
+                );
+              })}
             </p>
           </div>
         </>
